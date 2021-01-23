@@ -1,16 +1,10 @@
 package com.zqh;
 
-import com.zqh.bo.Test;
-import com.zqh.dao.TestDao;
+import com.zqh.service.InvokeTestService;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @discription:
@@ -24,12 +18,12 @@ public class Main {
 
 //        SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) context.getBean("sqlSessionFactory");
 //        final TestDao testDao = sqlSessionFactory.openSession().getMapper(TestDao.class);
-        final TestDao testDao = context.getBean(TestDao.class);
+//        final TestDao testDao = context.getBean(TestDao.class);
 
         /*SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) context.getBean("sqlSessionFactory");
         final TestDao testDao1 = sqlSessionFactory.openSession().getMapper(TestDao.class);*/
 
-        TransactionTemplate transactionTemplate = (TransactionTemplate) context.getBean("nestedTransactionTemplate");
+        /*TransactionTemplate transactionTemplate = (TransactionTemplate) context.getBean("nestedTransactionTemplate");
         transactionTemplate.execute(new TransactionCallback<Integer>() {
             @Override
             public Integer doInTransaction(TransactionStatus status) {
@@ -40,12 +34,14 @@ public class Main {
                 status.setRollbackOnly();
                 return 1;
             }
-        });
+        });*/
 
         /*List<Test> tests = testDao.getTests();
         for (Test test : tests) {
             System.out.println(test);
         }*/
+        InvokeTestService service = context.getBean(InvokeTestService.class);
+        service.invoke();
     }
 
 }

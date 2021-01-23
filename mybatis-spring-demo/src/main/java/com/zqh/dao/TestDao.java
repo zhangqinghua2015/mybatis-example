@@ -14,4 +14,6 @@ public interface TestDao {
 
     Integer insertTest(Test test);
 
+    Integer updTest();
+
 }

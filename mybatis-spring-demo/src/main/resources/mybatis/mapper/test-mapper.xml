@@ -15,4 +15,8 @@
     <insert id="insertTest" parameterType="com.zqh.bo.Test">
       INSERT INTO test (risk_type) VALUES (#{riskType})
     </insert>
+
+    <update id="updTest">
+        UPDATE test SET risk_type = -1;
+    </update>
 </mapper>
